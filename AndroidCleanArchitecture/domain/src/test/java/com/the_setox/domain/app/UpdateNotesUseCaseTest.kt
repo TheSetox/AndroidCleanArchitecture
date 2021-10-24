@@ -15,14 +15,14 @@ import org.junit.Test
  */
 class UpdateNotesUseCaseTest : BaseUseCaseTest() {
 
-    lateinit var useCase: UpdateNotesUseCase
+    lateinit var updateNotesUseCase: UpdateNotesUseCase
 
     /**
      * Initialize [UpdateNotesUseCase] using the stub of [NotesRepository].
      */
     @Before
     fun setUp() {
-        useCase = UpdateNotesUseCase(repository)
+        updateNotesUseCase = UpdateNotesUseCase(repository)
     }
 
     /**
@@ -38,9 +38,9 @@ class UpdateNotesUseCaseTest : BaseUseCaseTest() {
     fun testUpdateNotesSuccess() {
         every { repository.updateNotes(notes) } returns Notes(id = "1")
 
-        Assert.assertEquals(Notes(id = "1"), useCase.updateNotes(notes))
+        Assert.assertEquals(Notes(id = "1"), updateNotesUseCase(notes))
         verifyAll {
-            useCase.updateNotes(notes)
+            updateNotesUseCase(notes)
             repository.updateNotes(notes)
         }
     }
@@ -56,10 +56,10 @@ class UpdateNotesUseCaseTest : BaseUseCaseTest() {
      */
     @Test
     fun testUpdateNotesNull() {
-        Assert.assertNull(useCase.updateNotes(notes))
+        Assert.assertNull(updateNotesUseCase(notes))
         //TODO("repository should not be called")
         verifyAll {
-            useCase.updateNotes(notes)
+            updateNotesUseCase(notes)
             repository.updateNotes(notes)
         }
     }

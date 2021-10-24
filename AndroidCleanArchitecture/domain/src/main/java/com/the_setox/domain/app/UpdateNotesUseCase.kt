@@ -13,7 +13,7 @@ class UpdateNotesUseCase(repository: NotesRepository) : NotesUseCase(repository)
      * @param notes is an Object of [Notes] that will be updated.
      * @return [Notes] Object that needs to be updated.
      */
-    fun updateNotes(notes: Notes): Notes {
+    operator fun invoke(notes: Notes): Notes {
         repository.updateNotes(notes).also {
             println("UpdateNotesUseCase")
             return it

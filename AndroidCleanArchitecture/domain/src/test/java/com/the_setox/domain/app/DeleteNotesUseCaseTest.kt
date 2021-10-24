@@ -14,14 +14,14 @@ import org.junit.Test
  */
 class DeleteNotesUseCaseTest : BaseUseCaseTest() {
 
-    lateinit var useCase: DeleteNotesUseCase
+    lateinit var deleteNotesUseCase: DeleteNotesUseCase
 
     /**
      * Initialize [DeleteNotesUseCase] using the stub of [NotesRepository].
      */
     @Before
     fun setUp() {
-        useCase = DeleteNotesUseCase(repository)
+        deleteNotesUseCase = DeleteNotesUseCase(repository)
     }
 
     /**
@@ -37,9 +37,9 @@ class DeleteNotesUseCaseTest : BaseUseCaseTest() {
     fun testDeleteNotesSuccess() {
         every { repository.deleteNotes(any()) } returns "Success"
 
-        Assert.assertEquals("Success", useCase.deleteNotes(1))
+        Assert.assertEquals("Success", deleteNotesUseCase(1))
         verifyAll {
-            useCase.deleteNotes(1)
+            deleteNotesUseCase(1)
             repository.deleteNotes(1)
         }
     }
@@ -57,9 +57,9 @@ class DeleteNotesUseCaseTest : BaseUseCaseTest() {
     fun testDeleteNotesError() {
         every { repository.deleteNotes(0) } returns "Error"
 
-        Assert.assertEquals("Error", useCase.deleteNotes(0))
+        Assert.assertEquals("Error", deleteNotesUseCase(0))
         verifyAll {
-            useCase.deleteNotes(0)
+            deleteNotesUseCase(0)
             repository.deleteNotes(0)
         }
     }
@@ -75,10 +75,10 @@ class DeleteNotesUseCaseTest : BaseUseCaseTest() {
      */
     @Test
     fun testDeleteNotesNull() {
-        Assert.assertNull(useCase.deleteNotes(2))
+        Assert.assertNull(deleteNotesUseCase(2))
         //TODO("repository should not be called")
         verifyAll {
-            useCase.deleteNotes(2)
+            deleteNotesUseCase(2)
             repository.deleteNotes(2)
         }
     }

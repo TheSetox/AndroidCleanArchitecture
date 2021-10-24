@@ -13,7 +13,7 @@ class GetNotesUseCase(repository: NotesRepository) : NotesUseCase(repository) {
      * @param id will be able to identify the notes that needed to be get.
      * @return [Notes] Object if the parameter id is identified.
      */
-    fun getNotes(id: Int): Notes {
+    operator fun invoke(id: Int): Notes {
         repository.getNotes(id).also {
             println("GetNotesUseCase: $id")
             return it

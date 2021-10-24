@@ -13,7 +13,7 @@ class AddNotesUseCase(repository: NotesRepository) : NotesUseCase(repository) {
      * @param notes is an Object of [Notes] that will be added.
      * @return a string result if adding the notes is successful.
      */
-    fun addNotes(notes: Notes): String {
+    operator fun invoke(notes: Notes): String {
         repository.addNotes(notes).also {
             println("AddNotesUseCase: $it")
             return it

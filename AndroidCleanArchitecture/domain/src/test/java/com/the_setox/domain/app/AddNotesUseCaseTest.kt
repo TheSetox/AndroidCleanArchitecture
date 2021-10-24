@@ -16,14 +16,14 @@ import org.junit.Before
  */
 class AddNotesUseCaseTest: BaseUseCaseTest() {
 
-    lateinit var useCase: AddNotesUseCase
+    lateinit var addNotesUseCase: AddNotesUseCase
 
     /**
      * Initialize [AddNotesUseCase] using the stub of [NotesRepository].
      */
     @Before
     fun setUp() {
-        useCase = AddNotesUseCase(repository)
+        addNotesUseCase = AddNotesUseCase(repository)
     }
 
     /**
@@ -39,9 +39,9 @@ class AddNotesUseCaseTest: BaseUseCaseTest() {
     fun testAddNotesSuccess() {
         every { repository.addNotes(notes) } returns "Success"
 
-        assertEquals("Success", useCase.addNotes(notes))
+        assertEquals("Success", addNotesUseCase(notes))
         verifyAll {
-            useCase.addNotes(notes)
+            addNotesUseCase(notes)
             repository.addNotes(notes)
         }
     }
@@ -59,9 +59,9 @@ class AddNotesUseCaseTest: BaseUseCaseTest() {
     fun testAddNotesError() {
         every { repository.addNotes(notes) } returns "Error"
 
-        assertEquals("Error", useCase.addNotes(notes))
+        assertEquals("Error", addNotesUseCase(notes))
         verifyAll {
-            useCase.addNotes(notes)
+            addNotesUseCase(notes)
             repository.addNotes(notes)
         }
     }
@@ -77,10 +77,10 @@ class AddNotesUseCaseTest: BaseUseCaseTest() {
      */
     @Test
     fun testAddNotesNull() {
-        assertNull(useCase.addNotes(notes))
+        assertNull(addNotesUseCase(notes))
         //TODO("repository should not be called")
         verifyAll {
-            useCase.addNotes(notes)
+            addNotesUseCase(notes)
             repository.addNotes(notes)
         }
     }

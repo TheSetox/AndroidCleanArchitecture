@@ -15,14 +15,14 @@ import org.junit.Test
  */
 class GetNotesUseCaseTest : BaseUseCaseTest() {
 
-    lateinit var useCase: GetNotesUseCase
+    lateinit var getNotesUseCase: GetNotesUseCase
 
     /**
      * Initialize [GetNotesUseCase] using the stub of [NotesRepository].
      */
     @Before
     fun setUp() {
-        useCase = GetNotesUseCase(repository)
+        getNotesUseCase = GetNotesUseCase(repository)
     }
 
     /**
@@ -38,9 +38,9 @@ class GetNotesUseCaseTest : BaseUseCaseTest() {
     fun testGetNotesSuccess() {
         every { repository.getNotes(any()) } returns Notes(id = "1")
 
-        Assert.assertEquals(Notes(id = "1"), useCase.getNotes(1))
+        Assert.assertEquals(Notes(id = "1"), getNotesUseCase(1))
         verifyAll {
-            useCase.getNotes(1)
+            getNotesUseCase(1)
             repository.getNotes(1)
         }
     }
@@ -56,10 +56,10 @@ class GetNotesUseCaseTest : BaseUseCaseTest() {
      */
     @Test
     fun testGetNotesNull() {
-        Assert.assertNull(useCase.getNotes(2))
+        Assert.assertNull(getNotesUseCase(2))
         //TODO("repository should not be called")
         verifyAll {
-            useCase.getNotes(2)
+            getNotesUseCase(2)
             repository.getNotes(2)
         }
     }
